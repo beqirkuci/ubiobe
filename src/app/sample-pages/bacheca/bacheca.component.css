@@ -1,0 +1,34 @@
+#navbarSupportedContent {
+    margin-left: 0 !important;
+    z-index: 10000 !important;
+}
+.collapse{
+  margin-left: 0 !important;
+  z-index: 10000 !important;
+}
+.page-wrapper{
+    margin-left: 0 !important;
+    z-index: 10000 !important;
+  }
+  aside{
+    margin-left: 0 !important;
+    z-index: 10000 !important;
+  }
+  .paragraphHover:hover{
+    color: #383838 !important;
+  }
+  .dark-modal .modal-content {
+    background-color: #009efb;
+    color: white;
+  }
+  .dark-modal .close {
+    color: white;
+  }
+
+  #ads1, #ads2, #ads3, #ads4 {
+    height: 200px;
+margin-top: 50px;
+position: fixed !important;
+z-index: 1000000 !important;
+width: 15%;
+}

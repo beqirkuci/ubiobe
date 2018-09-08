@@ -1,0 +1,69 @@
+.btn-cl{
+background-color:#595959;
+border-color: #595959;
+}
+.btn-siamo {
+background-color:#595959;
+color: white;
+width: 10%;
+font-size: 20px;
+margin-left: 36%;
+font-weight: bolder;
+}
+.btn-accedi{
+background-color: #ffc000;
+border-color: white;
+color: #595959;
+border-radius: 10px; 
+width: 10%;
+font-size: 20px;
+font-weight: bolder;
+}
+.top-bar-signup{
+background-color:#595959;
+width: 100%;
+}
+.border-input{
+border: 1px solid;
+border-color: #595959; 
+border-radius: 10px; 
+height: 50px;
+}
+.footer-icon{
+color: white !important;
+font-size: 30px;
+margin-left: 40px;
+}
+@media (max-width:800px){
+    .btn-siamo{
+        margin-left: 15% !important;
+        font-size: 11px !important;
+        width: auto !important;
+    }
+    .btn-accedi{
+        font-size: 11px !important;
+        width: auto !important;
+    }
+    .img-top{
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+    .auth-wrapper .auth-box{
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .custom-control{
+        padding-left: 0 !important;
+    }
+    .social{
+        display: none !important;
+    }
+    .reponsive-div{
+        display: block !important;
+    }
+    .reponseive-height{
+       min-height: auto !important;
+       height: auto !important;
+    }
+}
+        

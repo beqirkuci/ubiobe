@@ -1,0 +1,38 @@
+<div class="row">
+  <!-- column -->
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Utenti</h4>
+        <h5 class="card-subtitle"></h5>
+        <form class="w-50 m-b-30">
+          <input type='text' class="form-control" placeholder='Scrivi per filtrare il nome...' (keyup)='updateFilter($event)' />
+        </form>
+
+        <ngx-datatable #mydatatable class="material" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'"
+          [rows]="rows">
+
+          <ngx-datatable-column name="Nome"> </ngx-datatable-column>
+
+          <ngx-datatable-column name="Genere"> </ngx-datatable-column>
+
+          <ngx-datatable-column name="Ruolo">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                <span title="Double click to edit" (dblclick)="editing[rowIndex + '-role'] = true" *ngIf="!editing[rowIndex + '-role']">
+                  {{value}}
+                </span>
+                <select *ngIf="editing[rowIndex + '-role']" (change)="updateValue($event, cell, rowIndex)" [value]="value">
+                  <option value="user">User</option>
+                  <option value="ambassador">Ambassador</option>
+                  <option value="professional">Professional</option>
+                </select>
+              </ng-template>
+            </ngx-datatable-column>
+
+        </ngx-datatable>
+        
+      </div>
+    </div>
+
+  </div>
+</div>

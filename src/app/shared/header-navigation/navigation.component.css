@@ -1,0 +1,8 @@
+.isAdmin{display:none !important} 
+.isUser{display:none !important} 
+.nonhover:hover{background:none !important;}
+@media (max-width: 800px){
+    #navbarSupportedContent{
+        margin-left: 0px !important;
+    }
+}

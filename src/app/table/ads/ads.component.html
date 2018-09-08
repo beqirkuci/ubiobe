@@ -1,0 +1,249 @@
+<style>
+    #ad1,
+    #ad2,
+    #ad3,
+    #ad4 {
+        border: 1px solid #e9ecef
+    }
+    #ad1:hover,
+    #ad2:hover,
+    #ad3:hover,
+    #ad4:hover {
+        border: 1px solid #ffd810;
+        cursor: pointer;
+    }
+</style>
+<ng-template #content let-c="close" let-d="dismiss">
+    <form action="" class="form-horizontal form-material" (submit)="createPost();" ngNativeValidate>
+        <div class="modal-header">
+            <h4 class="modal-title">Aggiungi image</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label for="filePost"></label>
+                <input type="file" id="filePost" (change)="handleFileInputforPost($event.target.files)">
+                <span *ngIf="imageSrc !== ''">
+                    <img id="image" [src]="imageSrc || ''" style="width: 120px;" />
+                </span>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="closeCreatePostModal" (click)="c('Close click')">Cancella</button>
+        </div>
+    </form>
+</ng-template>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div _ngcontent-c5="" class="row">
+                    <div style="display:block;" class="col-lg-2">
+                        <div id="ad1" style="height: 200px;margin-top: 50px;" (click)="openPostModal(content, 1);">
+                            <img style="width:100%;max-width: 100%;" src="{{ads1}}" id="{{adsid1}}">
+                        </div>
+                        <div id="ad2" style="height: 200px;margin-top: 300px;" (click)="openPostModal(content, 2);">
+                            <img style="width:100%;max-width: 100%;" src="{{ads2}}"  id="{{adsid2}}">
+                        </div>
+                    </div>
+                    <div _ngcontent-c5="" class="col-lg-8 col-xlg-9 col-md-7" style="background:white;">
+                        <div _ngcontent-c5="" class="card-body">
+                            <div _ngcontent-c5="" class="col-md-12">
+                                <textarea _ngcontent-c5="" class="form-control form-control-line" placeholder="Clicca per aggiungere un post.." rows="3"
+                                    style="cursor:pointer;"></textarea>
+                            </div>
+
+                            <div _ngcontent-c5="" class="profiletimeline">
+                                <div _ngcontent-c5="" class="sl-item">
+
+                                    <div _ngcontent-c5="" class="sl-right">
+                                        <div _ngcontent-c5="">
+
+                                            <div _ngcontent-c5="" class="sl-left">
+                                                <img _ngcontent-c5="" class="rounded-circle" height="40" src="assets/images/users/female-avatar.png" width="40">
+                                            </div>
+
+                                            <a _ngcontent-c5="" class="link" href="#" style="text-transform: capitalize !important;">Yllza Canaj</a>
+                                            <span _ngcontent-c5="" class="sl-date" style="margin-left: 10px;text-transform: capitalize !important;">31 ago 2018, 11:45:09</span>
+
+
+
+                                            <div _ngcontent-c5="">
+
+                                                <div _ngcontent-c5="" class="paragraphHover" style="margin-top: 10px;">
+                                                    <h4 _ngcontent-c5="">New post title</h4>
+                                                    <p _ngcontent-c5="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                                                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit anim id est laborum.</p>
+                                                </div>
+
+                                            </div>
+                                            <div _ngcontent-c5="" class="like-comm">
+                                                <a _ngcontent-c5="" class="link m-r-10" href="javascript:void(0)" id="5b890e256c6de7f6141720ad">
+                                                    <img _ngcontent-c5="" src="assets/images/logo-icon.png" width="20"> 0</a>
+                                            </div>
+                                        </div>
+                                        <hr _ngcontent-c5="">
+                                    </div>
+
+                                    <div _ngcontent-c5="" class="sl-right">
+                                        <div _ngcontent-c5="">
+
+                                            <div _ngcontent-c5="" class="sl-left">
+                                                <img _ngcontent-c5="" class="rounded-circle" height="40" src="assets/images/users/female-avatar.png" width="40">
+                                            </div>
+
+                                            <a _ngcontent-c5="" class="link" href="#" style="text-transform: capitalize !important;">Yllza Canaj</a>
+                                            <span _ngcontent-c5="" class="sl-date" style="margin-left: 10px;text-transform: capitalize !important;">31 ago 2018, 11:45:09</span>
+
+
+
+                                            <div _ngcontent-c5="">
+
+                                                <div _ngcontent-c5="" class="paragraphHover" style="margin-top: 10px;">
+                                                    <h4 _ngcontent-c5="">New post title</h4>
+                                                    <p _ngcontent-c5="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                                                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit anim id est laborum.</p>
+                                                </div>
+
+                                            </div>
+                                            <div _ngcontent-c5="" class="like-comm">
+                                                <a _ngcontent-c5="" class="link m-r-10" href="javascript:void(0)" id="5b890e256c6de7f6141720ad">
+                                                    <img _ngcontent-c5="" src="assets/images/logo-icon.png" width="20"> 0</a>
+                                            </div>
+                                        </div>
+                                        <hr _ngcontent-c5="">
+                                    </div>
+
+                                    <div _ngcontent-c5="" class="sl-right">
+                                        <div _ngcontent-c5="">
+
+                                            <div _ngcontent-c5="" class="sl-left">
+                                                <img _ngcontent-c5="" class="rounded-circle" height="40" src="assets/images/users/female-avatar.png" width="40">
+                                            </div>
+
+                                            <a _ngcontent-c5="" class="link" href="#" style="text-transform: capitalize !important;">Yllza Canaj</a>
+                                            <span _ngcontent-c5="" class="sl-date" style="margin-left: 10px;text-transform: capitalize !important;">31 ago 2018, 11:45:09</span>
+
+
+
+                                            <div _ngcontent-c5="">
+
+                                                <div _ngcontent-c5="" class="paragraphHover" style="margin-top: 10px;">
+                                                    <h4 _ngcontent-c5="">New post title</h4>
+                                                    <p _ngcontent-c5="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                                                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit anim id est laborum.</p>
+                                                </div>
+
+                                            </div>
+                                            <div _ngcontent-c5="" class="like-comm">
+                                                <a _ngcontent-c5="" class="link m-r-10" href="javascript:void(0)" id="5b890e256c6de7f6141720ad">
+                                                    <img _ngcontent-c5="" src="assets/images/logo-icon.png" width="20"> 0</a>
+                                            </div>
+                                        </div>
+                                        <hr _ngcontent-c5="">
+                                    </div>
+
+                                    <div _ngcontent-c5="" class="sl-right">
+                                        <div _ngcontent-c5="">
+
+                                            <div _ngcontent-c5="" class="sl-left">
+                                                <img _ngcontent-c5="" class="rounded-circle" height="40" src="assets/images/users/female-avatar.png" width="40">
+                                            </div>
+
+                                            <a _ngcontent-c5="" class="link" href="#" style="text-transform: capitalize !important;">Yllza Canaj</a>
+                                            <span _ngcontent-c5="" class="sl-date" style="margin-left: 10px;text-transform: capitalize !important;">31 ago 2018, 11:45:09</span>
+
+
+
+                                            <div _ngcontent-c5="">
+
+                                                <div _ngcontent-c5="" class="paragraphHover" style="margin-top: 10px;">
+                                                    <h4 _ngcontent-c5="">New post title</h4>
+                                                    <p _ngcontent-c5="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                                                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit anim id est laborum.</p>
+                                                </div>
+
+                                            </div>
+                                            <div _ngcontent-c5="" class="like-comm">
+                                                <a _ngcontent-c5="" class="link m-r-10" href="javascript:void(0)" id="5b890e256c6de7f6141720ad">
+                                                    <img _ngcontent-c5="" src="assets/images/logo-icon.png" width="20"> 0</a>
+                                            </div>
+                                        </div>
+                                        <hr _ngcontent-c5="">
+                                    </div>
+
+                                    <div _ngcontent-c5="" class="sl-right">
+                                        <div _ngcontent-c5="">
+
+                                            <div _ngcontent-c5="" class="sl-left">
+                                                <img _ngcontent-c5="" class="rounded-circle" height="40" src="assets/images/users/female-avatar.png" width="40">
+                                            </div>
+
+                                            <a _ngcontent-c5="" class="link" href="#" style="text-transform: capitalize !important;">Yllza Canaj</a>
+                                            <span _ngcontent-c5="" class="sl-date" style="margin-left: 10px;text-transform: capitalize !important;">31 ago 2018, 11:45:09</span>
+
+
+
+                                            <div _ngcontent-c5="">
+
+                                                <div _ngcontent-c5="" class="paragraphHover" style="margin-top: 10px;">
+                                                    <h4 _ngcontent-c5="">New post title</h4>
+                                                    <p _ngcontent-c5="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                                                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit anim id est laborum.</p>
+                                                </div>
+
+                                            </div>
+                                            <div _ngcontent-c5="" class="like-comm">
+                                                <a _ngcontent-c5="" class="link m-r-10" href="javascript:void(0)" id="5b890e256c6de7f6141720ad">
+                                                    <img _ngcontent-c5="" src="assets/images/logo-icon.png" width="20"> 0</a>
+                                            </div>
+                                        </div>
+                                        <hr _ngcontent-c5="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div style="display:block;" class="col-lg-2">
+                        <div id="ad3" style="height: 200px;margin-top: 50px;" (click)="openPostModal(content, 3);">
+                            <img style="width:100%;max-width: 100%;" src="{{ads3}}"  id="{{adsid3}}">
+                        </div>
+                        <div id="ad4" style="height: 200px;margin-top: 300px;" (click)="openPostModal(content, 4);">
+                            <img style="width:100%;max-width: 100%;" src="{{ads4}}"  id="{{adsid4}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

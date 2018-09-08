@@ -1,0 +1,47 @@
+// In this scss you can overwrite all our scss, we suggested you to add your scss into this, so whenever the update comes it will not affect your code.
+
+.user {
+    border: lightblue solid 6px;
+    border-radius: 50% !important;
+    display: inline-block !important;
+}
+
+.ambassador {
+    border: blue solid 6px;
+    border-radius: 50% !important;
+    display: inline-block !important;
+}
+
+.professional {
+    border: green solid 6px;
+    border-radius: 50% !important;
+    display: inline-block !important;
+}
+
+.workHere {
+    margin-top: 35px;
+}
+
+.loginBackground {
+    background: url(/assets/images/logo-icon.png) no-repeat left center; 
+    background-size: 50% 100%; 
+    background-color: #f5f5f5;
+  }
+
+  .capitalize {
+    text-transform: capitalize;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  .modal-content {
+      margin-top: 100px;
+  }
+
+  .terms-body {
+    height: 450px;
+    overflow: hidden;
+    overflow-y: scroll;
+  }

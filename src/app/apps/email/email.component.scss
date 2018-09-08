@@ -1,0 +1,76 @@
+.email-container {
+  overflow: hidden;
+}
+.list-group-item {
+  cursor: pointer;
+  &.selected {
+    background-color: #fffbf4;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #fffbf4;
+    }
+  }
+  a .time {
+    font-size: 10px;
+    margin-left: 3px;
+    text-transform: capitalize;
+  }
+}
+
+@media (min-width: 770px) {
+  .inb-right {
+    height: 100vh !important;
+    overflow: auto;
+    position: relative;
+  }
+  .inbox-panel {
+    margin-right: -15px;
+  }
+}
+
+.avatar-sm {
+  width: 50px;
+}
+.avatar-lg {
+  width: 100px;
+}
+.avatar-status {
+  border-radius: 100%;
+  padding: 3px;
+}
+
+@media (max-width: 768px) {
+  .inb-right {
+    height: 200px !important;
+    overflow: auto;
+  }
+  .avatar-lg {
+    width: 50px;
+  }
+}
+
+.bg-user {
+  border: lightblue solid 4px;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+
+.bg-ambassador {
+  border: blue solid 4px;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+
+.bg-professional {
+  border: green solid 4px;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+.time {
+  margin-left: 3px;
+  text-transform: capitalize;
+}
+p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
+color: #383838 !important;
+}

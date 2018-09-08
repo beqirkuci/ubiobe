@@ -1,0 +1,29 @@
+#navbarSupportedContent {
+    margin-left: 0 !important;
+    z-index: 10000 !important;
+}
+.collapse{
+  margin-left: 0 !important;
+  z-index: 10000 !important;
+}
+.page-wrapper{
+    margin-left: 0 !important;
+    z-index: 10000 !important;
+  }
+  aside{
+    margin-left: 0 !important;
+    z-index: 10000 !important;
+  }
+  .paragraphHover:hover{
+    color: #383838 !important;
+  }
+  .dark-modal .modal-content {
+    background-color: #009efb;
+    color: white;
+  }
+  .dark-modal .close {
+    color: white;
+  }
+  p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
+    color: #383838 !important;
+    }

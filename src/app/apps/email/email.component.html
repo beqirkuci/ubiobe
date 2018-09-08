@@ -1,0 +1,69 @@
+<div class="email-container">
+    <div class="card">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4">
+                <div class="inbox-panel border-right">
+                    <div class="d-flex p-20 no-block">
+                        <div class="align-self-center">
+                            <h4 class="m-b-0">Inbox</h4>
+                        </div>
+                    </div>
+                    <div class="inb-right" [perfectScrollbar]="config">
+                        <div (click)="onSelect(message)" *ngFor="let message of messages; let i = index" [class.selected]="message === selectedMessage"
+                            class="list-group-item list-group-item-action border-left-0 border-right-0 flex-column">
+                            <div class="d-flex">
+                                <div class="">
+                                    <div *ngIf="message.type" class="avatar-status bg-{{message.type}}">
+                                        <img alt="" class="avatar-sm rounded-circle" src="{{message.avatar}}" /> </div>
+                                    <img *ngIf="!message.type" alt="" class="avatar-sm rounded-circle" src="{{message.avatar}}" />
+                                </div>
+                                <div class="pl-3">
+                                    <div class="d-flex w-100 justify-content-between align-items-center">
+                                        <small class="font-medium text-{{message.type}}">
+                                            <i class="fa fa-circle text-{{message.type}} m-r-5 font-10"></i>{{message.from}}
+                                        </small>
+                                        <small class="bold text-muted time "> {{ message.date | date: 'MMMM d' }} </small>
+                                    </div>
+                                    <p class="mb-0 font-14 "> {{message.subject}} </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xlg-9 col-lg-8 bg-light-part b-l col-md-8">
+                <div class="w-100">
+                </div>
+                <div class="card-body" *ngIf="selectedMessage">
+                    <div class="p-20">
+                        <div class="d-flex align-items-center m-b-30">
+                            <div class="">
+                                <img alt="" class="avatar-lg rounded-circle" src="{{selectedMessage.avatar}}" /> </div>
+                            <div class="pl-3">
+                                <div class="font-medium">{{selectedMessage.from}} - {{selectedMessage.date | date: 'MMMM d' }} </div>
+                                <span class="font-14">Risposta a: {{selectedMessage.email}}</span>
+                                <br/>
+                                <label class="label label-{{selectedMessage.type}}">{{selectedMessage.tag}}</label>
+                            </div>
+                        </div>
+                        <h4 class="lead mt-0 m-b-30">{{selectedMessage.subject}}</h4>
+                        <div [innerHtml]="selectedMessage.body"></div>
+                        <div>
+                            <div class="m-t-30" *ngFor="let experience of selectedMessage.experiences; let i = index;">
+                                <strong>Esperienza {{i+1}}</strong>
+                                <br>
+                                <p *ngIf="!experience.workHere" class="capitalize">{{experience.fromFormatted}} - {{experience.toFormatted}}</p>
+                                <p *ngIf="experience.workHere" class="capitalize">{{experience.fromFormatted}} - Present</p>
+                                <p>{{experience.experience}}</p>
+                                <button type="button" style="background-color: #ffbc34;border: none;color: white;font-size: 12px;cursor:pointer" (click)="viewDocument(experience.path)">Vedi documento</button>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <button class="btn btn-primary" type="button" (click)="approvePro(selectedMessage.idMSG)">Aprova</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

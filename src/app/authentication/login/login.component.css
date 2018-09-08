@@ -1,0 +1,7 @@
+@media  (max-width: 768px) {
+    /* For mobile phones: */
+    .auth-wrapper .auth-box{
+        width: 100% !important;
+        max-width: 100% !important; 
+    }
+}

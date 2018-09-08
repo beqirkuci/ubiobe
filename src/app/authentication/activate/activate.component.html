@@ -1,0 +1,179 @@
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:#e3e3e3;">
+  <div class="col-lg-6" id="accountAcctivated" [ngClass]="{'d-none': proSignup}">
+    <div class="card" *ngIf="this.activated">
+      <img class="card-img-top img-responsive" src="assets/images/gallery/activate.jpeg" alt="Card image cap">
+      <div class="card-body">
+        <h3 class="font-normal">Evviva!! Il tuo account è stato attivato!</h3>
+        <p class="m-b-0 m-t-10">Fai clic sul link appena inviato al tuo account e-mail per verificare la tua e-mail e continuare
+          la procedura di registrazione.
+        </p>
+        <div>
+          <button class="btn btn-success btn-rounded waves-effect waves-light m-t-20" style="
+          max-width: 50%;
+          float: left;
+          margin-left: 10px;
+          width: 40%;cursor:pointer" (click)="redirectProfile();">
+            <i class="fa fa-user"></i> Accedi profilo</button>
+          <ng-template #confirmPro let-c="close" let-d="dismiss" style="margin-top: 100px;">
+            <div class="modal-header">
+              <h4 class="modal-title">Si prega di completare in seguito ...</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Per registrarti come professionista, devi confermare e poi procedi.</p>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="condition" [(ngModel)]="condition">
+                <label class="custom-control-label" for="condition">Hai esperienza come professionista?</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="save();">Continua</button>
+              <button type="button" id="btnClose" class="btn btn-secondary" (click)="c('Close click')">Cancella</button>
+            </div>
+          </ng-template>
+          <button class="btn btn-success btn-rounded waves-effect waves-light m-t-20" style="
+          max-width: 50%;
+          float: left;
+          margin-left: 10px;
+          width: 50%;cursor:pointer" (click)="open(confirmPro)">
+            <i class="fa fa-check"></i> Vuoi registrarti come professionista?</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="!this.activated">
+      <img class="card-img-top img-responsive" src="assets/images/gallery/activate.jpeg" alt="Card image cap">
+      <div class="card-body">
+        <h3 class="font-normal">Activation error</h3>
+        <p class="m-b-0 m-t-10"> Try again signup process
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5" id="proSignup" [ngClass]="{'d-block': proSignup}">
+    <div class="card" style="align-items: center; padding: 10px;">
+      <img class="card-img-top img-responsive" src="assets/images/logo-icon.png" alt="logo" style="width: 60px;">
+      <div class="card-body">
+        <div class="d-flex no-block align-items-center m-b-15">
+        </div>
+        <h3 class="font-normal" style="text-align: center;">Esperienze</h3>
+        <br>
+        <div>
+          <!-- experiences form -->
+          <form (ngSubmit)="processForm()" [formGroup]="form" ngNativeValidate>
+            <div class="form-group" formArrayName="experiences">
+              <div *ngFor="let experience of formData.controls; let i = index;">
+
+                <div class="panel panel-primary">
+                  <div class="panel-heading row">
+                    <div class="form-group col-md-8">
+                      <h4><label style="margin-left: 4px;">Esperienza #{{ i + 1 }}</label></h4>
+                    </div>
+                    <div class="form-group text-right col-md-4" *ngIf="form.controls.experiences.controls.length > 1" (click)="removeExperience(i)">
+                      <button type="text" class="btn btn-danger"><span class="fas fa-minus-circle"></span> Rimuovi</button>
+                    </div>
+                  </div>
+
+                  <div class="panel-body" [formGroupName]="i">
+
+                    <div class="form-group">
+                      <label class="col-md-12">Titolo</label>
+                      <div class="col-md-12">
+                        <input type="text" placeholder="Titolo" class="form-control form-control-line" formControlName="title" required oninvalid="this.setCustomValidity('Titolo non può essere vuoto')"
+                          oninput="setCustomValidity('')">
+                      </div>
+                    </div>
+
+                    <div class="form-group" style="max-width: 50%;float:left;">
+                      <label class="col-md-12">Da</label>
+                      <div class="col-md-12">
+                        <input type="date" placeholder="From" class="form-control form-control-line" formControlName="from" required oninvalid="this.setCustomValidity('Da non può essere vuoto')"
+                          oninput="setCustomValidity('')">
+                      </div>
+                    </div>
+
+                    <div class="form-group" style="max-width: 50%;float:left;">
+                      <div *ngIf="form.controls.experiences.controls.length-1 !== i || workHere">
+                        <label class="col-md-12">Al</label>
+                        <div class="col-md-12">
+                          <input type="date" placeholder="To" class="form-control form-control-line" formControlName="to" required oninvalid="this.setCustomValidity('Al non può essere vuoto')"
+                            oninput="setCustomValidity('')">
+                        </div>
+                      </div>
+                      <div class="col-md-12" *ngIf="form.controls.experiences.controls.length-1 === i" [class.workHere]="!workHere">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="workHere" formControlName="workHere" (change)="workHereChange($event)">
+                          <label class="custom-control-label" for="workHere">Lavoro ancora qui.</label>
+                        </div>
+                      </div>
+
+                      <span class="help-block" *ngIf="formErrors.experiences[i].to">
+                        {{ formErrors.experiences[i].to }}
+                      </span>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-md-12">Esperienza</label>
+                      <div class="col-md-12">
+                        <textarea rows="5" class="form-control form-control-line" formControlName="experience" required oninvalid="this.setCustomValidity('Esperienza non può essere vuoto')"
+                          oninput="setCustomValidity('')"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="row" style="width: 90% !important;margin-left: 0px !important; margin-right: 10px !important; ">
+                        <div class="custom-file col-md-10">
+                          <input type="file" id="file" (change)="handleFileInput($event.target.files, i)">
+                          <!-- <label for="file">Choose file</label> -->
+                        </div>
+                        <div class="input-group-append col-md-2">
+                          <div *ngIf="!form.controls.experiences.controls[i]['value'].path">
+                            <button class="btn btn-raised btn-success" type="button" (click)="uploadFileToActivity(i)" [disabled]="!form.controls.experiences.controls[i]['value'].fileToUpload"><span
+                                class="fa fa-upload"></span> Upload</button></div>
+                          <div *ngIf="form.controls.experiences.controls[i]['value'].path">
+                            <button class="btn btn-raised btn-success" type="button" (click)="uploadFileToActivity(i)" [disabled]="!form.controls.experiences.controls[i]['value'].fileToUpload"><span
+                                class="fas fa-check"></span> Done</button> </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- add Experience button -->
+            <div class="text-left" style="margin-left: 10px;">
+              <a (click)="addExperience()" class="btn btn-info"><span class="fas fa-plus-circle"></span> Aggiungi esperienza</a>
+            </div>
+
+            <div class="form-group text-right">
+              <button type="submit" class="btn btn-success">Invia</button>
+            </div>
+
+          </form>
+          <ng-template #proFinished let-c="close" let-d="dismiss" style="margin-top: 100px;">
+            <div class="modal-header">
+              <h4 class="modal-title">Si prega a completare in seguito ...</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Per registrarti come professionista, devi completare queste condizioni. Controllali e procedi.</p>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="condition" [(ngModel)]="condition">
+                <label class="custom-control-label" for="condition">Hai esperienza come professionista?</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="save();">Continua</button>
+              <button type="button" id="btnClose" class="btn btn-secondary" (click)="c('Close click')">Cancella</button>
+            </div>
+          </ng-template>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

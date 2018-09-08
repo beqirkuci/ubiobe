@@ -1,0 +1,11 @@
+.page-wrapper, #navbarSupportedContent{
+    margin-left: 0 !important;
+  }
+  #navbarSupportedContent{
+    margin-left: -50px !important;
+  }
+  @media (max-width: 800px){
+    #navbarSupportedContent{
+        margin-left: 0px !important;
+    }
+}

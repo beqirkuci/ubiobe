@@ -1,0 +1,94 @@
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(assets/images/big/auth-bg.jpg) no-repeat center center;">
+    <div class="auth-box">
+        <div id="loginform" [ngClass]="{'d-none': recoverform}">
+            <div class="logo">
+                <span class="db"><img src="assets/images/logo-icon.png" width="80px" alt="logo" /></span>
+                <h5 class="font-medium m-b-20">Sign In</h5>
+            </div>
+            <!-- Form -->
+            <div class="row">
+                <div class="col-12">
+                    <form class="form-horizontal " id="loginform">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" placeholder="Email" aria-label="Email"
+                                aria-describedby="basic-addon1" name="email" [(ngModel)]="credentials.email">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2"><i class="ti-pencil"></i></span>
+                            </div>
+                            <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password"
+                                aria-describedby="basic-addon1" name="password" [(ngModel)]="credentials.password">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">Ricordati di me
+                                    </label>
+                                    <a (click)="showRecoverForm()" href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i
+                                            class="fa fa-lock m-r-5"></i> Password dimenticata?</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <div class="col-xs-12 p-b-20">
+                                <button (click)="login();" class="btn btn-block btn-lg btn-info" type="submit">Accedi</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                                <div class="social">
+                                    <div style="padding-bottom: 5px;">
+                                        <a href="javascript:void(0)" class="btn btn-facebook" style="color: white !important; width: 190px;"
+                                            data-toggle="tooltip" title="" data-original-title="Login with Facebook">
+                                            <i aria-hidden="true" class="fab fa-facebook-f"></i> Accedi con Facebook
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="javascript:void(0)" class="btn btn-googleplus" style="color: white !important; width: 190px;"
+                                            data-toggle="tooltip" title="" data-original-title="Login with Google">
+                                            <i aria-hidden="true" class="fab fa-google-plus-g"></i> Accedi con Google
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0 m-t-10">
+                            <div class="col-sm-12 text-center" style="width: 100%;">
+                                Non hai un account? <a href="#/signup2" class="text-info m-l-5"><b>Sign Up</b></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="recoverform" [ngClass]="{'d-block': recoverform}">
+            <div class="logo">
+                <span class="db"><img src="assets/images/logo-icon.png" alt="logo" /></span>
+                <h5 class="font-medium m-b-20">Recover Password</h5>
+                <span>Enter your Email and instructions will be sent to you!</span>
+            </div>
+            <div class="row m-t-20">
+                <!-- Form -->
+                <form class="col-12">
+                    <!-- email -->
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <input class="form-control form-control-lg" type="email" required="" placeholder="Username">
+                        </div>
+                    </div>
+                    <!-- pwd -->
+                    <div class="row m-t-20">
+                        <div class="col-12">
+                            <button class="btn btn-block btn-lg btn-danger" type="submit" name="action">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

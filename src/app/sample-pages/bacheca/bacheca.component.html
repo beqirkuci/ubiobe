@@ -1,0 +1,188 @@
+<div class="row">
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Aggiungi post</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #form id="form" class="form-horizontal form-material" ngNativeValidate>
+        <div class="form-group">
+          <label class="col-md-12">Titolo</label>
+          <div class="col-md-12">
+            <input type="text" placeholder="Titolo" class="form-control form-control-line" name="caption" [(ngModel)]="postObject.caption">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-12">Testo</label>
+          <div class="col-md-12">
+            <textarea type="text" rows="5" placeholder="Testo" class="form-control form-control-line" name="text" [(ngModel)]="postObject.text"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="filePost"></label>
+          <input type="file" #filePost id="filePost" accept="image/x-png,image/gif,image/jpeg" (change)="handleFileInputforPost($event.target.files)" style="padding: 10px;">
+          <span *ngIf="imageSrc !== ''">
+            <img id="image" [src]="imageSrc || ''" alt="" style="width: 120px;" />
+          </span>
+        </div>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="c('Close click');createPost();">Crea</button>
+      <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancella</button>
+    </div>
+  </ng-template>
+  <div style="display:block;" class="col-lg-2">
+    <div id="ad1" style="height: 200px;position: fixed !important;width: 15%;">
+      <img style="width:100%;max-width: 100%;" src="{{ads1}}">
+    </div>
+    <div id="ad2" style="height: 200px;margin-top: 300px;position: fixed !important;width: 15%;">
+      <img style="width:100%;max-width: 100%;" src="{{ads2}}">
+    </div>
+  </div>
+  <div class="col-lg-8 col-xlg-9 col-md-7" style="background:white;margin-left: auto;margin-right: auto;">
+    <div class="card-body">
+      <div class="col-md-12">
+        <textarea class="form-control form-control-line" placeholder="Clicca per aggiungere un post.." rows="3" style="cursor:pointer;"
+          (click)="openPostModal(content)"></textarea>
+      </div>
+      <div class="profiletimeline" *ngIf="postsArrays.length !== 0">
+        <div class="sl-item">
+          <div class="sl-right" *ngFor="let postsArray of postsArrays; let i = index">
+            <div>
+              <div class="sl-left">
+                <img src={{postsArray.user.profilePic}} class="rounded-circle" width="40" height="40" />
+              </div>
+              <a href="#" class="link" style="text-transform: capitalize !important;">{{postsArray.user.name}}</a>
+              <span class="sl-date" style="margin-left: 10px;text-transform: capitalize !important;">{{postsArray.time}}</span>
+              <span *ngIf="postsArray._id===userId && editPostId!==postsArray._id" style="float: right;margin-left: 10px;" class="fa fa-times"
+                (click)="confirmDeletePost(DeletePost)"></span>
+              <span *ngIf="postsArray._id===userId && editPostId!==postsArray._id" style="float: right;" class="fa fa-edit" (click)="changePostStatus(postsArray._id)"></span>
+
+              <ng-template #DeletePost let-c="close" let-d="dismiss" style="margin-top: 150px;">
+                <div class="modal-header">
+                  <h4 class="modal-title">Delete post</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete this post ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" id="close" (click)="c('Close click')">Close</button>
+                  <button type="button" class="btn btn-danger" (click)="deletePost(postsArray._id)">Delete</button>
+                </div>
+              </ng-template>
+              <div>
+                <div *ngIf="editPostId!==postsArray._id" class="paragraphHover" style="margin-top: 10px;">
+                  <h4>{{postsArray.caption}}</h4>
+                  <p>{{postsArray.text}}</p>
+                </div>
+                <div *ngIf="postEditable && editPostId===postsArray._id">
+                  <form action="" class="form-horizontal m-t-20 row" (submit)="editPost(postsArray._id, postsArray.caption, postsArray.text);"
+                    ngNativeValidate>
+                    <input type="text" placeholder="Titolo" class="form-control form-control-line" name="caption" [(ngModel)]="postsArray.caption"
+                      required oninvalid="this.setCustomValidity('Titolo non può essere vuoto.')" onchange="this.setCustomValidity('')">
+                    <textarea class="form-control form-control-line m-t-20" placeholder="Text ..." rows="3" name="text" [(ngModel)]="postsArray.text"
+                      required oninvalid="this.setCustomValidity('Text non può essere vuoto.')" onchange="this.setCustomValidity('')"></textarea>
+                    <button type="text" class="btn btn-outline-dark m-t-20" (click)="changePostStatus('')">Cancella</button>
+                    <button type="submit" class="btn btn-outline-warning m-t-20">Aggiorna</button>
+                  </form>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-6 m-b-20">
+                  <img src="{{postsArray.img}}" class="img-fluid radius" />
+                </div>
+              </div>
+              <!-- <div class="like-comm">
+                <a href="javascript:void(0)" class="link m-r-10" (click)="like(postsArray._id)" id="{{postsArray._id}}">
+                  <img src="assets/images/logo-icon.png" width="20" /> {{postsArray.likes}}</a>
+              </div> -->
+              <div class="like-comm">
+                <a href="javascript:void(0)" class="link m-r-10" (click)="like(postsArray._id)">
+                  <img src="assets/images/logo-icon.png" width="20" />
+                </a>
+
+                <ng-template #likes>
+                  <div *ngFor="let user of postsArray.likes; let i = index">
+                    <p style="color: #fff !important;">{{user.name}} {{user.surname}}</p>
+                  </div>
+                  <div *ngIf="postsArray.likes.length===0">No likes</div>
+                </ng-template>
+
+                <ng-template #LikesModal let-c="close" let-d="dismiss" style="margin-top: 150px;">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Likes</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div *ngFor="let user of postsArray.likes; let i = index">
+                      <p>{{user.name}} {{user.surname}}</p>
+                    </div>
+                    <div *ngIf="postsArray.likes.length===0">No likes</div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closeLikesModal" (click)="c('Close click')">Chiudi</button>
+                  </div>
+                </ng-template>
+
+                <span id="{{postsArray._id}}" class="pointer" placement="top" [ngbTooltip]="likes" (click)="openLikesModal(LikesModal)">{{postsArray.totalLikes}}
+                  <span *ngIf="postsArray.totalLikes===1"> Like</span>
+                  <span *ngIf="postsArray.totalLikes!==1"> Likes</span>
+                </span>
+              </div>
+
+              <div class="row">
+                <div class="col-11">
+                  <div class="input-field m-t-30">
+                    <textarea id="comment" cols="4" placeholder="Leave a comment" class="form-control form-control-line" type="text" [(ngModel)]="comment"></textarea>
+                  </div>
+                </div>
+                <div class="col-1 m-t-30">
+                  <a class="btn-circle btn-lg btn-cyan float-right text-white" href="javascript:void(0)" (click)="addComment(postsArray._id)">
+                    <i class="fas fa-paper-plane"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="row" *ngFor="let comment of postsArray.comments; let i = index">
+                <div class="">
+                  <div class="card-body">
+                    <h6 class="card-title">{{comment.name}} {{comment.surname}}</h6>
+                    <p class="card-subtitle mb-2 text-muted capitalize">{{comment.createdAt}}</p>
+                    <p class="card-text">{{comment.comment}}</p>
+                    <!-- <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a> -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="profiletimeline" *ngIf="postsArrays.length === 0">
+        <h4>Non ci sono posts</h4>
+      </div> -->
+    </div>
+  </div>
+  <div style="display:block;" class="col-lg-2">
+    <div id="ad3" style="height: 200px;position: fixed !important;width: 15%;">
+      <img style="width:100%;max-width: 100%;" src="{{ads3}}">
+    </div>
+    <div id="ad4" style="height: 200px;margin-top: 300px;position: fixed !important;width: 15%;">
+      <img style="width:100%;max-width: 100%;" src="{{ads4}}">
+    </div>
+  </div>
+  <!-- Column -->
+</div>
