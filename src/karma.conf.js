@@ -23,7 +23,6 @@ module.exports = function (config) {
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
-    disableHostCheck : true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
